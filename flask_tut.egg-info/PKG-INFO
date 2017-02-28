@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: flask-tut
+Version: 0.0
+Summary: flask_tut
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: flask_tut README
+        ==================
+        
+        Getting Started
+        ---------------
+        
+        - cd <directory containing this file>
+        
+        - $VENV/bin/python setup.py develop
+        
+        - $VENV/bin/initializedb.py
+        
+        - $VENV/bin/python flask_tut/__init__.py
+        
+        - go to http://localhost:5678
+        
+Keywords: web wsgi bfg flask
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application

@@ -1,0 +1,108 @@
+{% include 'base.html' %}
+
+{% block extra_stylesheets %}
+  <link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/select/1.2.1/css/select.dataTables.min.css" rel="stylesheet">
+
+  <link href="static/DataTablesEditor/css/dataTables.editor.css" rel="stylesheet">
+  <link href="static/DataTablesEditor/css/editor.dataTables.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>DataTables 1.10.x example: </h2>
+      <table id="dt_110x" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created at</th>
+            <th>Text</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_javascripts %}
+<!--   <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+ -->
+
+  <script src="static/jquery.dataTables.min.js"></script>
+
+  <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
+<!--
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+ -->
+  <script src="static/DataTablesEditor/js/dataTables.editor.js"></script>
+
+  <script type="text/javascript" charset="utf-8">
+
+  var editor;
+
+    $(document).ready(function(){
+
+      //var editor = new $.fn.dataTable.Editor( {} );
+
+      editor = new $.fn.dataTable.Editor( {
+          ajax:  "{{ url_for('data') }}",
+          table: '#dt_110x',
+          idSrc:  '0',
+          fields: [
+              { label: 'id', name: '0' },
+              { label: 'transcription_text_id', name: '1' },
+              { label: '2',  name: '2'  },
+              { label: 'Text',  name: '3'  },
+              // etc
+          ]
+      } );
+
+
+      var table = $('#dt_110x').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": "{{ url_for('data') }}",
+        dom: 'Bfrtip',
+        select: true,
+        columns: [
+            { data: '0' },
+            { data: '1' },
+            { data: '2' },
+            { data: '3' },
+            //{ data: 'text'  },
+        ],
+        buttons: [
+            { extend: 'create', editor: editor },
+            { extend: 'edit',   editor: editor },
+            { extend: 'remove', editor: editor }
+        ]
+      });
+
+    });
+
+/*
+$('#myTable').DataTable( {
+    ajax: '/api/staff',
+    dom: 'Bfrtip',
+    columns: [
+        { data: 'first_name' },
+        { data: 'last_name' },
+        // etc
+    ],
+    select: true,
+    buttons: [
+        { extend: 'create', editor: editor },
+        { extend: 'edit',   editor: editor },
+        { extend: 'remove', editor: editor }
+    ]
+} );
+*/
+
+
+  </script>
+{% endblock %}
